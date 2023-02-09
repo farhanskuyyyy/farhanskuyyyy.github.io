@@ -7,8 +7,8 @@
     <title>Portofolio</title>
     <link href="dist/final.css" rel="stylesheet">
     <script>
-        if (localStorage.theme == 'dark' || (!('theme' in localStorage) && window.watchMedia('(prefers-color-scheme: dark)').matches)) {
-            document.documentElement.classList.add('dark');
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
         }else{
             document.documentElement.classList.remove('dark');
         }
@@ -258,23 +258,27 @@
                     </div>
                 </div>
             </div>
-            <form>
+            <form name="portfolio-contact-form">
                 <div class="w-full lg:w-2/3 lg:mx-auto">
                     <div class="w-full mb-8 px-4">
                         <label for="name" class="text-base text-primary font-bold">Nama</label>
-                        <input type="text" id="name" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary"/>
+                        <input type="text" id="name" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary" name="name" required/>
                     </div>
                     <div class="w-full mb-8 px-4">
                         <label for="email" class="text-base text-primary font-bold">Email</label>
-                        <input type="text" id="email" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary"/>
+                        <input type="text" id="email" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary" name="email" required/>
                     </div>
                     <div class="w-full mb-8 px-4">
                         <label for="pesan" class="text-base text-primary font-bold">Pesan</label>
-                        <textarea id="pesan" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary h-32">
+                        <textarea id="pesan" class="w-full bg-slate-200 text-dark p-3 rounded-md focus:outline-none focus:ring-primary focus:ring-1 focus:border-primary h-32" name="pesan" required>
                         </textarea>
                     </div>
                     <div class="w-full px-4">
-                        <button type="submit" class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-300">Kirim</button>
+                        <button type="button" class="text-base font-semibold text-white bg-slate-500 py-3 px-8 rounded-full w-full transition duration-300 animate-pulse hidden" id="btn-loading" disabled>
+                            Loading...
+                        </button>
+                        <button type="submit" class="text-base font-semibold text-white bg-primary py-3 px-8 rounded-full w-full hover:opacity-80 hover:shadow-lg transition duration-300 block" id="btn-kirim">Kirim</button>
+                        
                     </div>
                 </div>
             </form>
@@ -388,11 +392,48 @@
             }
         })
 
-        if (localStorage.theme == 'dark' || (!('theme' in localStorage) && window.watchMedia('(prefers-color-scheme: dark)').matches)) {
+        if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             darkToggle.checked = true
         }else{
             darkToggle.checked = false
         }
+
+
+        // contact form send to spreadsheet
+        const scriptURL = "https://script.google.com/macros/s/AKfycbwh4yHZ3QyEFUEnzIUVUW0cYRUi1bniNa6V4TuHibNl591mZMs-x8Mo9_sqRES1RbawKQ/exec";
+        const form = document.forms["portfolio-contact-form"];
+        const btnKirim = document.querySelector("#btn-kirim");
+        const btnLoading = document.querySelector("#btn-loading");
+        // const alertForm = document.querySelector(".alert-form");
+
+        form.addEventListener("submit", (e) => {
+            e.preventDefault();
+
+            // Ketika Tombol submit di klik
+            // Tampil tombol loading , hilangkan tombol kirim
+            btnLoading.classList.remove("hidden");
+            btnLoading.classList.add("block");
+            btnKirim.classList.remove("block");
+            btnKirim.classList.add("hidden");
+            
+            fetch(scriptURL, { method: "POST", body: new FormData(form) })
+            .then((response) => {
+                // Tampil tombol kirim , hilangkan tombol loading
+                btnLoading.classList.remove("block");
+                btnLoading.classList.add("hidden");
+                btnKirim.classList.remove("hidden");
+                btnKirim.classList.add("block");
+
+                // tampilkan alert
+                // alertForm.classList.toggle("d-none");
+                alert('success')
+
+                // reset form
+                form.reset();
+                console.log("Success!", response);
+            })
+            .catch((error) => console.error("Error!", error.message));
+        });
     </script>
 </body>
 </html>
