@@ -1,21 +1,23 @@
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   content: ["index.html"],
-  darkMode : 'class',
+  darkMode: 'class',
   theme: {
-    container : {
-      center : true,
-      padding : '16px',
+    container: {
+      center: true,
+      padding: '24px',
     },
     extend: {
-      colors : {
-        primary : '#14b8a6',
-        secondary : '#64748b',
-        dark : '#0f172a',
+      fontFamily: {
+        serif: ['Lora', 'serif'],
+        sans: ['Inter', 'sans-serif'],
       },
-      // screens : {
-      //   '2xl' : '1320px'
-      // },
+      colors: {
+        primary: '#0d9488', // teal-600
+        accent: '#2dd4bf', // teal-400
+        darkbg: '#0f172a', // slate-900
+        lightbg: '#faf9f6', // warm alabaster
+      },
     },
   },
   plugins: [],
