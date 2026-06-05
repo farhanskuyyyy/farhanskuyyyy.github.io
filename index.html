@@ -4,83 +4,85 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Portofolio</title>
+    <title>Farhan Arfianto - Backend Engineer Portfolio</title>
     <link href="dist/final.css" rel="stylesheet">
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
-                document.documentElement.classList.add('dark');
-        }else{
+            document.documentElement.classList.add('dark');
+        } else {
             document.documentElement.classList.remove('dark');
         }
     </script>
 </head>
-<body>
+<body class="selection:bg-teal-500/30">
     <!-- Header Start -->
-    <header class="bg-transparent absolute top-0 left-0 w-full flex items-center z-10">
-        <div class="container">
-            <div class="flex items-center justify-between relative">
-                <div class="px-4">
-                    <a href="#home" class="font-bold text-lg text-primary block py-6">Portofolio</a>
-                </div>
-                <div class="flex items-center px-4">
-                    <button class="block absolute right-4 lg:hidden" id="hamburger" name="hamburger" type="button">
-                        <span class="w-[30px] h-[2px] my-2 block bg-dark dark:bg-white transition duration-300 ease-in-out origin-top-left"></span>
-                        <span class="w-[30px] h-[2px] my-2 block bg-dark dark:bg-white transition duration-300 ease-in-out"></span>
-                        <span class="w-[30px] h-[2px] my-2 block bg-dark dark:bg-white transition duration-300 ease-in-out origin-bottom-left"></span>
-                    </button>
-                    <nav id="nav-menu" class="hidden absolute py-5 bg-white shadow-lg rounded-lg max-w-[250px] w-full right-4 top-full lg:block lg:static lg:bg-transparent lg:max-w-full lg:shadow-none lg:rounded-none dark:bg-dark dark:shadow-slate-500 lg:dark:bg-transparent">
-                        <ul class="block lg:flex">
-                            <li class="group"><a href="#home" class="text-base text-dark py-2 px-8 flex group-hover:text-primary dark:text-white">Beranda</a></li>
-                            <li class="group"><a href="#about" class="text-base text-dark py-2 px-8 flex group-hover:text-primary dark:text-white">Tentang Saya</a></li>
-                            <li class="group"><a href="#portofolio" class="text-base text-dark py-2 px-8 flex group-hover:text-primary dark:text-white">Portofolio</a></li>
-                            <li class="group"><a href="#skill" class="text-base text-dark py-2 px-8 flex group-hover:text-primary dark:text-white">Skills</a></li>
-                            <li class="group"><a href="#blog" class="text-base text-dark py-2 px-8 flex group-hover:text-primary dark:text-white">Blog</a></li>
-                            <li class="group"><a href="#contact" class="text-base text-dark py-2 px-8 flex group-hover:text-primary dark:text-white">Kontak</a></li>
-                            <li class="mt-3 flex items-center pl-8 lg:mt-0">
-                                <div class="flex">
-                                    <span class="mr-2 text-sm text-slate-500">Light</span>
-                                    <input type="checkbox" class="hidden" id="dark-toggle">
-                                    <label for="dark-toggle" class="">
-                                        <div class="flex h-5 w-9 cursor-pointer items-center rounded-full bg-slate-500 p-1">
-                                            <div class="toggle-circle h-4 w-4 rounded-full bg-white transition duration-300 ease-in-out"></div>
-                                        </div>
-                                    </label>
-                                    <span class="ml-2 text-sm text-slate-500">Dark</span>
-                                </div>
-                            </li>
-                        </ul>
-                    </nav>
-                </div>
+    <header class="absolute top-0 left-0 w-full flex items-center z-10 py-6 border-b border-slate-200/50 dark:border-slate-800/50 no-print">
+        <div class="container max-w-4xl mx-auto flex items-center justify-between">
+            <div>
+                <a href="#home" class="font-serif font-bold text-xl text-slate-900 dark:text-slate-50">Farhan.A</a>
+            </div>
+            <div class="flex items-center gap-6">
+                <nav id="nav-menu" class="hidden md:flex gap-6 text-sm font-medium text-slate-600 dark:text-slate-400">
+                    <a href="#about" class="hover:text-primary transition-colors">About</a>
+                    <a href="#skills" class="hover:text-primary transition-colors">Skills</a>
+                    <a href="#experience" class="hover:text-primary transition-colors">Experience</a>
+                    <a href="#projects" class="hover:text-primary transition-colors">Projects</a>
+                    <a href="#contact" class="hover:text-primary transition-colors">Contact</a>
+                </nav>
+                
+                <!-- Theme Toggle Button -->
+                <button id="dark-toggle-btn" class="p-2 text-slate-600 dark:text-slate-400 hover:text-primary transition-colors" aria-label="Toggle Dark Mode">
+                    <svg id="sun-icon" class="w-5 h-5 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
+                    <svg id="moon-icon" class="w-5 h-5 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
+                </button>
+                
+                <!-- Mobile Hamburger Menu Button -->
+                <button class="block md:hidden text-slate-600 dark:text-slate-400 hover:text-primary focus:outline-none" id="hamburger" aria-label="Toggle Navigation Menu">
+                    <span class="w-[24px] h-[2px] my-1 block bg-current transition duration-300 origin-top-left"></span>
+                    <span class="w-[24px] h-[2px] my-1 block bg-current transition duration-300"></span>
+                    <span class="w-[24px] h-[2px] my-1 block bg-current transition duration-300 origin-bottom-left"></span>
+                </button>
             </div>
         </div>
     </header>
+    
+    <!-- Mobile Navigation Menu -->
+    <nav id="mobile-nav" class="hidden fixed top-[73px] left-0 w-full bg-lightbg dark:bg-darkbg border-b border-slate-200 dark:border-slate-800 z-50 flex-col py-6 px-8 gap-4 text-md font-medium no-print">
+        <a href="#about" class="hover:text-primary transition-colors py-2">About</a>
+        <a href="#skills" class="hover:text-primary transition-colors py-2">Skills</a>
+        <a href="#experience" class="hover:text-primary transition-colors py-2">Experience</a>
+        <a href="#projects" class="hover:text-primary transition-colors py-2">Projects</a>
+        <a href="#contact" class="hover:text-primary transition-colors py-2">Contact</a>
+    </nav>
     <!-- Header End -->
 
-    <!-- Hero Section Start -->
-    <section id="home" class="pt-24 dark:bg-dark">
-        <div class="container">
-            <div class="flex flex-wrap">
-                <div class="w-full self-center px-4 lg:w-1/2">
-                    <h1 class="text-base font-semibold text-primary md:text-xl">Halo Semua , Saya <span class="text-dark block font-bold text-4xl mt-1 lg:text-5xl dark:text-white">Farhan</span></h1>
-                    <h2 class="font-medium text-lg text-secondary max-w-xl mb-4 lg:text-2xl">Student | <span class="text-dark font-bold dark:text-white">Software Developer</span></h2>
-                    <p class="font-medium text-slate-400 mb-10 leading-relaxed">Kerja Kerja Kerja Kerja Kerja Kerja Kerja Kerja Kerja, <span class="text-dark font-bold dark:text-white">Main</span> </p>
-
-                    <a href="#contact" class="text-base font-semibold text-white bg-primary rounded-full py-3 px-8 hover:shadow-lg hover:opacity-90 transition duration-300 ease-in-out">Hubungi Saya</a>
-                </div>
-                <div class="w-full self-end px-4 lg:w-1/2">
-                    <div class="mt-10 relative lg:mt-9 lg:right-0">
-                        <img src="src/foto.png" alt="" class="max-w-full mx-auto relative z-10">
-                        <span class="absolute -bottom-0 left-1/2 -translate-x-1/2 md:scale-125">
-                            <svg height="400" width="400" viewBox="0 0 200 200" xmlns="http://www.w3.org/2000/svg">
-                                <path fill="#14B8A6" d="M43.7,-70C57.9,-67.5,71.4,-58.3,72.1,-45.5C72.7,-32.7,60.4,-16.4,56.5,-2.3C52.6,11.8,57,23.6,55.1,34.2C53.2,44.8,44.9,54.2,34.7,56.6C24.5,59,12.2,54.5,1.5,51.9C-9.3,49.3,-18.5,48.8,-31.1,47.7C-43.7,46.6,-59.5,45.1,-64.7,37.1C-69.8,29,-64.2,14.5,-57.9,3.6C-51.6,-7.2,-44.6,-14.5,-41.9,-26.8C-39.3,-39.1,-40.9,-56.4,-34.7,-63.5C-28.4,-70.5,-14.2,-67.2,0.3,-67.7C14.8,-68.1,29.5,-72.4,43.7,-70Z" transform="translate(100 100) scale(1.1)" />
-                              </svg>
-                        </span>
-                    </div>
-                </div>
+    <!-- Hero / Top Section Start -->
+    <section id="home" class="pt-32 pb-16">
+        <div class="container max-w-4xl mx-auto px-6 text-center md:text-left">
+            <h1 class="font-serif font-bold text-4xl md:text-5xl text-slate-900 dark:text-slate-50 mb-3 tracking-tight">FARHAN ARFIANTO</h1>
+            <p class="font-serif text-lg md:text-xl text-teal-600 dark:text-teal-400 font-medium mb-6">Backend Engineer</p>
+            
+            <!-- Quick Contact Row -->
+            <div class="flex flex-wrap justify-center md:justify-start gap-x-4 gap-y-2 text-sm text-slate-500 dark:text-slate-400 mb-8 border-y border-slate-200/50 dark:border-slate-800/50 py-3 font-medium">
+                <span>East Jakarta, Indonesia</span>
+                <span class="hidden md:inline text-slate-300 dark:text-slate-700">|</span>
+                <a href="tel:+6289629657237" class="hover:text-primary transition-colors">+62 896-2965-7237</a>
+                <span class="hidden md:inline text-slate-300 dark:text-slate-700">|</span>
+                <a href="mailto:arfianto472@gmail.com" class="hover:text-primary transition-colors">arfianto472@gmail.com</a>
+                <span class="hidden md:inline text-slate-300 dark:text-slate-700">|</span>
+                <a href="https://linkedin.com/in/farhanarfianto" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">LinkedIn</a>
+                <span class="hidden md:inline text-slate-300 dark:text-slate-700">|</span>
+                <a href="https://github.com/farhanskuyyyy" target="_blank" rel="noopener noreferrer" class="hover:text-primary transition-colors">GitHub</a>
             </div>
+
+            <!-- PDF Trigger Button -->
+            <button id="print-cv-btn" class="no-print inline-flex items-center gap-2 px-5 py-2.5 border border-slate-300 dark:border-slate-700 rounded-md text-sm font-medium hover:border-primary dark:hover:border-accent hover:text-primary dark:hover:text-accent transition-colors">
+                <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
+                Print / Download PDF Resume
+            </button>
         </div>
     </section>
-    <!-- Hero Section End -->
+    <!-- Hero / Top Section End -->
 
     <!-- About Section Start -->
     <section id="about" class="py-32 dark:bg-dark">
