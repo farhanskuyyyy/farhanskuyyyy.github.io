@@ -1,15 +1,66 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Lora:ital,wght@0,400;0,600;0,700;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&family=JetBrains+Mono:wght@400;500;700&display=swap');
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-    @apply font-sans bg-lightbg text-slate-700 dark:bg-darkbg dark:text-slate-300 transition-colors duration-200;
+    @apply font-sans bg-lightbg text-slate-600 dark:bg-darkbg dark:text-slate-300 transition-colors duration-200 antialiased;
+}
+
+/* --- Netlify-style building blocks --- */
+
+/* Uppercase monospace eyebrow used for every section label */
+.eyebrow {
+    @apply font-mono text-[11px] font-medium uppercase tracking-[0.18em] text-primary dark:text-accent;
+}
+
+/* Teal → blue gradient text (hero name, accents) */
+.gradient-text {
+    @apply bg-teal-blue bg-clip-text text-transparent;
+}
+
+/* Card surface reused by projects, skills and education */
+.surface-card {
+    @apply rounded-xl border border-slate-200 dark:border-darkline bg-white dark:bg-darksurface transition-all duration-300;
+}
+
+.surface-card:hover {
+    @apply border-accent/60 dark:border-accent/50 shadow-glow;
+}
+
+/* Tech chips */
+.chip {
+    @apply inline-flex items-center gap-1.5 rounded-lg border border-slate-200 dark:border-darkline bg-lightsurface dark:bg-darkbg/60 px-2.5 py-1 text-xs font-medium text-slate-700 dark:text-slate-300;
+}
+
+.chip-icon {
+    @apply w-3.5 h-3.5 bg-current inline-block shrink-0;
+}
+
+.tag-mono {
+    @apply font-mono text-[10px] uppercase tracking-wider rounded-md border border-slate-200 dark:border-darkline px-2 py-0.5 text-muted dark:text-slate-400;
+}
+
+/* Dotted grid + teal glow backdrop for the hero */
+.hero-grid {
+    background-image: radial-gradient(rgba(14, 30, 37, 0.10) 1px, transparent 1px);
+    background-size: 22px 22px;
+    mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+    -webkit-mask-image: radial-gradient(ellipse 80% 60% at 50% 0%, #000 40%, transparent 100%);
+}
+
+.dark .hero-grid {
+    background-image: radial-gradient(rgba(123, 183, 212, 0.16) 1px, transparent 1px);
+}
+
+.hero-glow {
+    background: radial-gradient(600px 260px at 20% 0%, rgba(5, 189, 186, 0.22), transparent 70%),
+                radial-gradient(520px 240px at 80% 10%, rgba(77, 154, 191, 0.18), transparent 70%);
 }
 
 .navbar-fixed {
-    @apply fixed z-[9999] bg-[#faf9f6]/80 dark:bg-[#0f172a]/80 backdrop-blur-md border-b border-slate-200/50 dark:border-slate-800/50;
+    @apply fixed z-[9999] bg-white/80 dark:bg-darkbg/90 backdrop-blur-md border-b border-slate-200 dark:border-darkline;
 }
 
 .hamburger-active > span:nth-child(1){
@@ -25,47 +76,177 @@ body {
 }
 
 @media print {
+    @page {
+        margin: 12mm 12mm;
+    }
+
     body {
         background: #ffffff !important;
-        color: #000000 !important;
-        font-family: 'Lora', serif !important;
-        font-size: 10pt !important;
-        line-height: 1.35 !important;
+        color: #111111 !important;
+        font-family: 'Inter', sans-serif !important;
+        font-size: 9pt !important;
+        line-height: 1.32 !important;
     }
-    
+
     h1, h2, h3 {
         color: #000000 !important;
     }
-    
+
+    h1 { font-size: 20pt !important; }
+    h3 { font-size: 10.5pt !important; }
+
+    .eyebrow {
+        color: #00655e !important;
+        font-size: 8pt !important;
+        margin-bottom: 0.4rem !important;
+    }
+
+    .gradient-text {
+        -webkit-text-fill-color: #000000 !important;
+        color: #000000 !important;
+        background: none !important;
+    }
+
+    .surface-card,
+    .chip,
+    .tag-mono {
+        border-color: #d7dee1 !important;
+        background: #ffffff !important;
+        box-shadow: none !important;
+    }
+
+    .surface-card {
+        padding: 0.5rem 0.6rem !important;
+        border-radius: 4px !important;
+    }
+
+    .chip {
+        font-size: 7.5pt !important;
+        padding: 1px 5px !important;
+        border-radius: 3px !important;
+    }
+
+    .chip-icon { display: none !important; }
+
+    .tag-mono {
+        font-size: 6.5pt !important;
+        padding: 0 4px !important;
+    }
+
+    .hero-grid,
+    .hero-glow {
+        display: none !important;
+    }
+
     .container,
-    .max-w-4xl {
+    .max-w-4xl,
+    .max-w-5xl {
         max-width: 100% !important;
         width: 100% !important;
         padding: 0 !important;
         margin: 0 !important;
     }
-    
+
     .no-print,
     header,
     footer,
     #contact,
-    #toTop {
+    #toTop,
+    #home > div > p.max-w-2xl {
         display: none !important;
     }
-    
+
     section {
-        padding-top: 1.5rem !important;
-        padding-bottom: 1.5rem !important;
+        padding-top: 0.5rem !important;
+        padding-bottom: 0.5rem !important;
         border-color: #e2e8f0 !important;
     }
-    
-    .experience-block {
-        page-break-inside: avoid !important;
+
+    #home { padding-top: 0 !important; }
+
+    /* Compact two-column grids so the resume stays short */
+    #skills .grid,
+    #projects .grid,
+    #education .grid {
+        display: grid !important;
+        grid-template-columns: 1fr 1fr !important;
+        gap: 0.4rem !important;
     }
-    
+
+    /* Cards should hug their content instead of stretching to row height */
+    #projects .grid,
+    #education .grid,
+    #skills .grid {
+        align-items: start !important;
+    }
+
+    .project-card {
+        display: block !important;
+    }
+
+    /* Denser project + education copy so the resume stays at three pages */
+    #projects p,
+    #education p {
+        font-size: 8.2pt !important;
+        line-height: 1.28 !important;
+    }
+
+    #projects h3,
+    #education h3 {
+        font-size: 9.5pt !important;
+    }
+
+    #projects .surface-card,
+    #education .surface-card {
+        padding: 0.35rem 0.45rem !important;
+    }
+
+    /* Keep a section label glued to the content it introduces */
+    .eyebrow {
+        page-break-after: avoid !important;
+        break-after: avoid !important;
+    }
+
+    #skills .grid > .md\:col-span-2 {
+        grid-column: span 2 / span 2 !important;
+    }
+
+    #experience .space-y-12 > * + * {
+        margin-top: 0.7rem !important;
+    }
+
+    #experience ul { margin-top: 0.2rem !important; }
+
+    #experience ul > li + li,
+    #projects ul > li + li {
+        margin-top: 0.15rem !important;
+    }
+
+    .mb-8, .mb-10, .mb-6 { margin-bottom: 0.4rem !important; }
+    .mb-4 { margin-bottom: 0.3rem !important; }
+
+    .project-card,
+    .education-item,
+    .skill-group-card {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
+    /* Let long experience blocks flow across pages instead of leaving gaps */
+    .experience-block {
+        page-break-inside: auto !important;
+        break-inside: auto !important;
+    }
+
+    .experience-block li,
+    .project-card li {
+        page-break-inside: avoid !important;
+        break-inside: avoid !important;
+    }
+
     a[href^="http"]:after {
         content: " (" attr(href) ")" !important;
-        font-size: 8pt !important;
+        font-size: 7pt !important;
         color: #475569 !important;
     }
 }
