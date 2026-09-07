@@ -6,7 +6,34 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Farhan Arfianto — Fullstack Developer & Backend Engineer</title>
     <meta name="description" content="Farhan Arfianto — Fullstack Developer and Backend Engineer specializing in Golang (Echo), PHP (Laravel), distributed task queues, B2B transactional platforms and system observability.">
-    <link href="dist/final.css" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <script>
+        tailwind.config = {
+            darkMode: 'class',
+            theme: {
+                extend: {
+                    colors: {
+                        primary: '#7B1F2E',
+                        secondary: '#C9A0A0',
+                        accent: '#F0E0E0',
+                        darkbg: '#1A0A0E',
+                        darksurface: '#2D1118',
+                        lightbg: '#FDFBFB',
+                        lightsurface: '#F5EDED',
+                        ink: '#1A0A0E',
+                        muted: '#6B4F54',
+                    },
+                    fontFamily: {
+                        display: ['"DM Sans"', 'sans-serif'],
+                        body: ['Inter', 'sans-serif'],
+                    }
+                }
+            }
+        }
+    </script>
     <script>
         if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
             document.documentElement.classList.add('dark');
@@ -14,13 +41,91 @@
             document.documentElement.classList.remove('dark');
         }
     </script>
+    <style>
+        body { font-family: 'Inter', sans-serif; }
+        h1, h2, h3, h4, h5, h6, .font-display { font-family: 'DM Sans', sans-serif; }
+        ::selection { background-color: rgba(123, 31, 46, 0.2); }
+        .navbar-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #FDFBFB;
+            border-bottom: 1px solid #F5EDED;
+            z-index: 100;
+        }
+        .dark .navbar-fixed {
+            background-color: #2D1118;
+            border-bottom: 1px solid #3d1a22;
+        }
+        .hamburger-active span:nth-child(1) { transform: rotate(45deg) translate(3px, 3px); }
+        .hamburger-active span:nth-child(2) { opacity: 0; }
+        .hamburger-active span:nth-child(3) { transform: rotate(-45deg) translate(3px, -3px); }
+        .chip {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 8px;
+            border: 1px solid #F5EDED;
+            background-color: #FDFBFB;
+            font-size: 12px;
+            font-weight: 500;
+            color: #1A0A0E;
+        }
+        .dark .chip {
+            border-color: #3d1a22;
+            background-color: #2D1118;
+            color: #e2d4d6;
+        }
+        .chip-icon {
+            width: 14px;
+            height: 14px;
+            background-color: currentColor;
+            opacity: 0.7;
+            display: inline-block;
+        }
+        .tag-mono {
+            display: inline-block;
+            padding: 3px 10px;
+            border-radius: 6px;
+            background-color: #F5EDED;
+            font-size: 11px;
+            font-weight: 500;
+            color: #6B4F54;
+        }
+        .dark .tag-mono {
+            background-color: #3d1a22;
+            color: #C9A0A0;
+        }
+        .surface-card {
+            background-color: #FDFBFB;
+            border: 1px solid #F5EDED;
+            border-radius: 12px;
+        }
+        .dark .surface-card {
+            background-color: #2D1118;
+            border-color: #3d1a22;
+        }
+        .eyebrow {
+            font-family: 'Inter', sans-serif;
+            font-size: 11px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #7B1F2E;
+        }
+        .dark .eyebrow {
+            color: #C9A0A0;
+        }
+    </style>
 </head>
-<body class="selection:bg-accent/30">
+<body class="bg-lightbg dark:bg-darkbg text-ink dark:text-white selection:bg-primary/30">
     <!-- Header Start -->
     <header class="absolute top-0 left-0 w-full flex items-center z-10 py-5 no-print">
-        <div class="container max-w-5xl mx-auto flex items-center justify-between">
+        <div class="container max-w-5xl mx-auto flex items-center justify-between px-6">
             <a href="#home" class="flex items-center gap-2.5 group">
-                <span class="w-8 h-8 rounded-lg bg-teal-blue flex items-center justify-center text-white font-display font-bold text-sm shadow-glow">FA</span>
+                <span class="w-8 h-8 rounded-lg bg-primary flex items-center justify-center text-white font-display font-bold text-sm">FA</span>
                 <span class="font-display font-bold text-lg text-ink dark:text-white tracking-tight">Farhan Arfianto</span>
             </a>
             <div class="flex items-center gap-6">
@@ -31,14 +136,10 @@
                     <a href="#projects" class="hover:text-primary dark:hover:text-accent transition-colors">Projects</a>
                     <a href="#contact" class="hover:text-primary dark:hover:text-accent transition-colors">Contact</a>
                 </nav>
-
-                <!-- Theme Toggle Button -->
-                <button id="dark-toggle-btn" class="p-2 rounded-lg border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 hover:text-primary dark:hover:text-accent hover:border-accent/60 transition-colors" aria-label="Toggle Dark Mode">
+                <button id="dark-toggle-btn" class="p-2 rounded-lg border border-secondary dark:border-darkline text-muted dark:text-slate-400 hover:text-primary dark:hover:text-accent hover:border-primary/60 transition-colors" aria-label="Toggle Dark Mode">
                     <svg id="sun-icon" class="w-4 h-4 hidden dark:block" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 3v1m0 16v1m9-9h-1M4 12H3m15.364-6.364l-.707.707M6.343 17.657l-.707.707m0-12.728l.707.707m12.728 12.728l.707-.707M12 8a4 4 0 100 8 4 4 0 000-8z"/></svg>
                     <svg id="moon-icon" class="w-4 h-4 block dark:hidden" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/></svg>
                 </button>
-
-                <!-- Mobile Hamburger Menu Button -->
                 <button class="block md:hidden text-muted dark:text-slate-400 hover:text-primary focus:outline-none" id="hamburger" aria-label="Toggle Navigation Menu">
                     <span class="w-[24px] h-[2px] my-1 block bg-current transition duration-300 origin-top-left"></span>
                     <span class="w-[24px] h-[2px] my-1 block bg-current transition duration-300"></span>
@@ -47,9 +148,8 @@
             </div>
         </div>
     </header>
-
     <!-- Mobile Navigation Menu -->
-    <nav id="mobile-nav" class="hidden fixed top-[68px] left-0 w-full bg-white dark:bg-darksurface border-b border-slate-200 dark:border-darkline z-50 flex-col py-6 px-8 gap-4 text-md font-medium no-print">
+    <nav id="mobile-nav" class="hidden fixed top-[68px] left-0 w-full bg-lightbg dark:bg-darksurface border-b border-secondary dark:border-darkline z-50 flex-col py-6 px-8 gap-4 text-md font-medium no-print">
         <a href="#about" class="hover:text-primary dark:hover:text-accent transition-colors py-2">About</a>
         <a href="#skills" class="hover:text-primary dark:hover:text-accent transition-colors py-2">Skills</a>
         <a href="#experience" class="hover:text-primary dark:hover:text-accent transition-colors py-2">Experience</a>
@@ -60,56 +160,46 @@
 
     <!-- Hero Section Start -->
     <section id="home" class="relative pt-32 pb-16 overflow-hidden">
-        <div class="hero-glow absolute inset-0 -z-10 no-print"></div>
-        <div class="hero-grid absolute inset-0 -z-10 no-print"></div>
-
         <div class="container max-w-5xl mx-auto px-6">
-            <div class="inline-flex items-center gap-2 rounded-full border border-slate-200 dark:border-darkline bg-white/70 dark:bg-darksurface/70 backdrop-blur px-3 py-1 mb-6 no-print">
-                <span class="w-1.5 h-1.5 rounded-full bg-accent animate-pulse"></span>
-                <span class="font-mono text-[11px] tracking-wider text-muted dark:text-slate-400">Available for backend &amp; fullstack roles</span>
+            <div class="inline-flex items-center gap-2 rounded-full border border-secondary dark:border-darkline bg-lightbg dark:bg-darksurface px-3 py-1 mb-6 no-print">
+                <span class="w-1.5 h-1.5 rounded-full bg-primary"></span>
+                <span class="text-[11px] tracking-wider text-muted dark:text-slate-400 font-medium">Available for backend &amp; fullstack roles</span>
             </div>
-
             <h1 class="font-display font-extrabold text-4xl md:text-6xl text-ink dark:text-white mb-4 tracking-tight leading-[1.05]">
-                Farhan <span class="gradient-text">Arfianto</span>
+                Farhan <span class="text-primary dark:text-accent">Arfianto</span>
             </h1>
             <p class="font-display text-lg md:text-2xl text-muted dark:text-slate-300 font-medium mb-6">
-                Fullstack Developer <span class="text-slate-300 dark:text-darkline">|</span> Backend Engineer
+                Fullstack Developer &nbsp;·&nbsp; Backend Engineer
             </p>
-
             <p class="max-w-2xl text-base leading-relaxed text-muted dark:text-slate-400 mb-8">
                 I build high-throughput API ecosystems, B2B transactional platforms, and the observability that keeps them honest — in <strong class="text-ink dark:text-white font-semibold">Golang (Echo)</strong> and <strong class="text-ink dark:text-white font-semibold">PHP (Laravel)</strong>.
             </p>
-
-            <!-- Quick Contact Row -->
-            <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted dark:text-slate-400 mb-8 border-y border-slate-200 dark:border-darkline py-3 font-medium">
+            <div class="flex flex-wrap gap-x-4 gap-y-2 text-sm text-muted dark:text-slate-400 mb-8 border-y border-secondary dark:border-darkline py-3 font-medium">
                 <span>East Jakarta, Indonesia</span>
-                <span class="hidden md:inline text-slate-300 dark:text-darkline">|</span>
-                <a href="tel:+6289629657237" class="hover:text-primary dark:hover:text-accent transition-colors">+62 896-2965-7237</a>
-                <span class="hidden md:inline text-slate-300 dark:text-darkline">|</span>
+                <span class="hidden md:inline text-secondary dark:text-darkline">·</span>
+                <a href="tel:+628****7237" class="hover:text-primary dark:hover:text-accent transition-colors">+62 896-2965-7237</a>
+                <span class="hidden md:inline text-secondary dark:text-darkline">·</span>
                 <a href="mailto:arfianto472@gmail.com" class="hover:text-primary dark:hover:text-accent transition-colors">arfianto472@gmail.com</a>
-                <span class="hidden md:inline text-slate-300 dark:text-darkline">|</span>
+                <span class="hidden md:inline text-secondary dark:text-darkline">·</span>
                 <a href="https://linkedin.com/in/farhanarfianto" target="_blank" rel="noopener noreferrer" class="hover:text-primary dark:hover:text-accent transition-colors">LinkedIn</a>
-                <span class="hidden md:inline text-slate-300 dark:text-darkline">|</span>
+                <span class="hidden md:inline text-secondary dark:text-darkline">·</span>
                 <a href="https://github.com/farhanskuyyyy" target="_blank" rel="noopener noreferrer" class="hover:text-primary dark:hover:text-accent transition-colors">GitHub</a>
             </div>
-
-            <!-- CTA Row -->
             <div class="no-print flex flex-wrap items-center gap-3">
-                <a id="download-cv-btn" href="src/Farhan_Arfianto_CV.pdf" download="Farhan_Arfianto_CV.pdf" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-teal-blue text-white text-sm font-semibold hover:opacity-90 shadow-glow transition-opacity">
+                <a id="download-cv-btn" href="src/Farhan_Arfianto_CV.pdf" download="Farhan_Arfianto_CV.pdf" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg bg-primary text-white text-sm font-semibold hover:bg-primary/90 transition-colors">
                     <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"/></svg>
                     Download CV (ATS PDF)
                 </a>
-                <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-slate-200 dark:border-darkline text-sm font-semibold text-ink dark:text-white hover:border-accent/60 hover:text-primary dark:hover:text-accent transition-colors">
+                <a href="#projects" class="inline-flex items-center gap-2 px-5 py-2.5 rounded-lg border border-secondary dark:border-darkline text-sm font-semibold text-ink dark:text-white hover:border-primary/60 hover:text-primary dark:hover:text-accent transition-colors">
                     View Key Projects
                 </a>
             </div>
-
         </div>
     </section>
     <!-- Hero Section End -->
 
     <!-- About / Summary Section Start -->
-    <section id="about" class="py-14 border-t border-slate-200 dark:border-darkline">
+    <section id="about" class="py-14 border-t border-secondary dark:border-darkline">
         <div class="container max-w-5xl mx-auto px-6">
             <h2 class="eyebrow mb-6">Professional Summary</h2>
             <div class="surface-card p-6 md:p-8">
@@ -122,24 +212,20 @@
     <!-- About / Summary Section End -->
 
     <!-- Skills Section Start -->
-    <section id="skills" class="py-14 border-t border-slate-200 dark:border-darkline">
+    <section id="skills" class="py-14 border-t border-secondary dark:border-darkline">
         <div class="container max-w-5xl mx-auto px-6">
             <h2 class="eyebrow mb-6">Core Competencies</h2>
-
-            <!-- Interactive Category Toggles -->
             <div class="no-print flex flex-wrap gap-2 mb-8">
-                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider border border-primary bg-primary text-white transition-colors" data-category="all">All</button>
-                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 hover:border-accent hover:text-primary dark:hover:text-accent transition-colors" data-category="languages">Languages</button>
-                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 hover:border-accent hover:text-primary dark:hover:text-accent transition-colors" data-category="frameworks">Frameworks</button>
-                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 hover:border-accent hover:text-primary dark:hover:text-accent transition-colors" data-category="queues">Queues</button>
-                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 hover:border-accent hover:text-primary dark:hover:text-accent transition-colors" data-category="devops">DevOps</button>
-                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 hover:border-accent hover:text-primary dark:hover:text-accent transition-colors" data-category="databases">Databases</button>
-                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 hover:border-accent hover:text-primary dark:hover:text-accent transition-colors" data-category="apis">APIs</button>
-                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg font-mono text-[11px] uppercase tracking-wider border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 hover:border-accent hover:text-primary dark:hover:text-accent transition-colors" data-category="practices">Practices</button>
+                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg text-[11px] uppercase tracking-wider font-medium border border-primary bg-primary text-white transition-colors" data-category="all">All</button>
+                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg text-[11px] uppercase tracking-wider font-medium border border-secondary dark:border-darkline text-muted dark:text-slate-400 hover:border-primary hover:text-primary dark:hover:text-accent transition-colors" data-category="languages">Languages</button>
+                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg text-[11px] uppercase tracking-wider font-medium border border-secondary dark:border-darkline text-muted dark:text-slate-400 hover:border-primary hover:text-primary dark:hover:text-accent transition-colors" data-category="frameworks">Frameworks</button>
+                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg text-[11px] uppercase tracking-wider font-medium border border-secondary dark:border-darkline text-muted dark:text-slate-400 hover:border-primary hover:text-primary dark:hover:text-accent transition-colors" data-category="queues">Queues</button>
+                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg text-[11px] uppercase tracking-wider font-medium border border-secondary dark:border-darkline text-muted dark:text-slate-400 hover:border-primary hover:text-accent transition-colors" data-category="devops">DevOps</button>
+                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg text-[11px] uppercase tracking-wider font-medium border border-secondary dark:border-darkline text-muted dark:text-slate-400 hover:border-primary hover:text-primary dark:hover:text-accent transition-colors" data-category="databases">Databases</button>
+                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg text-[11px] uppercase tracking-wider font-medium border border-secondary dark:border-darkline text-muted dark:text-slate-400 hover:border-primary hover:text-primary dark:hover:text-accent transition-colors" data-category="apis">APIs</button>
+                <button class="skill-category-btn px-3.5 py-1.5 rounded-lg text-[11px] uppercase tracking-wider font-medium border border-secondary dark:border-darkline text-muted dark:text-slate-400 hover:border-primary hover:text-primary dark:hover:text-accent transition-colors" data-category="practices">Practices</button>
             </div>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-                <!-- Languages -->
                 <div class="skill-group-card surface-card p-5" data-group="languages">
                     <h3 class="font-display text-sm font-bold text-ink dark:text-white mb-3">Programming Languages</h3>
                     <div class="flex flex-wrap gap-2">
@@ -150,8 +236,6 @@
                         <span class="chip"><span class="chip-icon" style="mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/postgresql.svg') no-repeat center / contain; -webkit-mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/postgresql.svg') no-repeat center / contain;"></span>SQL</span>
                     </div>
                 </div>
-
-                <!-- Frameworks -->
                 <div class="skill-group-card surface-card p-5" data-group="frameworks">
                     <h3 class="font-display text-sm font-bold text-ink dark:text-white mb-3">Frameworks &amp; Libraries</h3>
                     <div class="flex flex-wrap gap-2">
@@ -165,8 +249,6 @@
                         <span class="chip"><span class="chip-icon" style="mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/express.svg') no-repeat center / contain; -webkit-mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/express.svg') no-repeat center / contain;"></span>Express.js</span>
                     </div>
                 </div>
-
-                <!-- Queues & Task Processing -->
                 <div class="skill-group-card surface-card p-5" data-group="queues">
                     <h3 class="font-display text-sm font-bold text-ink dark:text-white mb-3">Queues &amp; Task Processing</h3>
                     <div class="flex flex-wrap gap-2">
@@ -175,8 +257,6 @@
                         <span class="chip">Message Queues</span>
                     </div>
                 </div>
-
-                <!-- DevOps -->
                 <div class="skill-group-card surface-card p-5" data-group="devops">
                     <h3 class="font-display text-sm font-bold text-ink dark:text-white mb-3">DevOps &amp; Observability</h3>
                     <div class="flex flex-wrap gap-2">
@@ -188,8 +268,6 @@
                         <span class="chip"><span class="chip-icon" style="mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/githubactions.svg') no-repeat center / contain; -webkit-mask: url('https://cdn.jsdelivr.net/npm/simple-icons@v9/icons/githubactions.svg') no-repeat center / contain;"></span>CI/CD</span>
                     </div>
                 </div>
-
-                <!-- Databases -->
                 <div class="skill-group-card surface-card p-5" data-group="databases">
                     <h3 class="font-display text-sm font-bold text-ink dark:text-white mb-3">Databases &amp; Caching</h3>
                     <div class="flex flex-wrap gap-2">
@@ -201,8 +279,6 @@
                         <span class="chip">ETL</span>
                     </div>
                 </div>
-
-                <!-- APIs & Integrations -->
                 <div class="skill-group-card surface-card p-5" data-group="apis">
                     <h3 class="font-display text-sm font-bold text-ink dark:text-white mb-3">APIs &amp; Integrations</h3>
                     <div class="flex flex-wrap gap-2">
@@ -214,8 +290,6 @@
                         <span class="chip">Supplier APIs</span>
                     </div>
                 </div>
-
-                <!-- Development Practices -->
                 <div class="skill-group-card surface-card p-5 md:col-span-2" data-group="practices">
                     <h3 class="font-display text-sm font-bold text-ink dark:text-white mb-3">Development Practices</h3>
                     <div class="flex flex-wrap gap-2">
@@ -232,20 +306,18 @@
     <!-- Skills Section End -->
 
     <!-- Experience Section Start -->
-    <section id="experience" class="py-14 border-t border-slate-200 dark:border-darkline">
+    <section id="experience" class="py-14 border-t border-secondary dark:border-darkline">
         <div class="container max-w-5xl mx-auto px-6">
             <h2 class="eyebrow mb-8">Professional Experience</h2>
-
-            <div class="relative border-l border-slate-200 dark:border-darkline pl-6 ml-3 space-y-12">
-                <!-- Experience 1 -->
+            <div class="relative border-l-2 border-secondary dark:border-darkline pl-6 ml-3 space-y-12">
                 <div class="experience-block relative">
-                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-teal-blue border-4 border-lightbg dark:border-darkbg"></div>
+                    <div class="absolute -left-[35px] top-1.5 w-4 h-4 rounded-full bg-primary border-4 border-lightbg dark:border-darkbg"></div>
                     <div class="flex flex-col md:flex-row md:justify-between md:items-baseline gap-1 mb-4">
                         <div>
                             <h3 class="font-display font-bold text-xl text-ink dark:text-white">Fullstack Developer <span class="text-muted dark:text-slate-400 font-medium">(Full-time)</span></h3>
-                            <p class="text-sm font-medium text-primary dark:text-accent">Lumoshive <span class="text-muted dark:text-slate-400">| Jakarta, Indonesia</span></p>
+                            <p class="text-sm font-medium text-primary dark:text-accent">Lumoshive <span class="text-muted dark:text-slate-400">· Jakarta, Indonesia</span></p>
                         </div>
-                        <span class="font-mono text-[11px] px-2.5 py-1 rounded-md border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 self-start md:self-auto whitespace-nowrap">April 2021 – Present</span>
+                        <span class="text-[11px] px-2.5 py-1 rounded-md border border-secondary dark:border-darkline text-muted dark:text-slate-400 self-start md:self-auto whitespace-nowrap">April 2021 – Present</span>
                     </div>
                     <ul class="list-disc list-outside pl-4 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                         <li>Engineered and architected <strong class="text-ink dark:text-white font-semibold">Airtime (B2B PPOB Platform)</strong> in <strong class="text-ink dark:text-white font-semibold">Golang</strong> and <strong class="text-ink dark:text-white font-semibold">PostgreSQL</strong>, establishing a high-throughput engine for automated pulsa, data, and utility bill disbursements.</li>
@@ -259,16 +331,14 @@
                         <li>Collaborated with and mentored team members, conducting code reviews and resolving technical blockers to maintain high code quality.</li>
                     </ul>
                 </div>
-
-                <!-- Experience 2 -->
                 <div class="experience-block relative">
-                    <div class="absolute -left-[31px] top-1.5 w-4 h-4 rounded-full bg-slate-300 dark:bg-darkline border-4 border-lightbg dark:border-darkbg"></div>
+                    <div class="absolute -left-[35px] top-1.5 w-4 h-4 rounded-full bg-secondary dark:bg-darkline border-4 border-lightbg dark:border-darkbg"></div>
                     <div class="flex flex-col md:flex-row md:justify-between md:items-baseline gap-1 mb-4">
                         <div>
                             <h3 class="font-display font-bold text-xl text-ink dark:text-white">PHP Developer <span class="text-muted dark:text-slate-400 font-medium">(Internship)</span></h3>
-                            <p class="text-sm font-medium text-primary dark:text-accent">Anggada Duta Wisesa, PT <span class="text-muted dark:text-slate-400">| Jakarta, Indonesia</span></p>
+                            <p class="text-sm font-medium text-primary dark:text-accent">Anggada Duta Wisesa, PT <span class="text-muted dark:text-slate-400">· Jakarta, Indonesia</span></p>
                         </div>
-                        <span class="font-mono text-[11px] px-2.5 py-1 rounded-md border border-slate-200 dark:border-darkline text-muted dark:text-slate-400 self-start md:self-auto whitespace-nowrap">May 2020 – March 2021</span>
+                        <span class="text-[11px] px-2.5 py-1 rounded-md border border-secondary dark:border-darkline text-muted dark:text-slate-400 self-start md:self-auto whitespace-nowrap">May 2020 – March 2021</span>
                     </div>
                     <ul class="list-disc list-outside pl-4 space-y-2 text-sm leading-relaxed text-slate-600 dark:text-slate-400">
                         <li>Designed and executed complex SQL queries to analyze data warehouse repositories using <strong class="text-ink dark:text-white font-semibold">Pentaho Data Integration</strong>, generating actionable business insights.</li>
@@ -281,15 +351,13 @@
     <!-- Experience Section End -->
 
     <!-- Projects Section Start -->
-    <section id="projects" class="py-14 border-t border-slate-200 dark:border-darkline">
+    <section id="projects" class="py-14 border-t border-secondary dark:border-darkline">
         <div class="container max-w-5xl mx-auto px-6">
             <h2 class="eyebrow mb-8">Key Projects</h2>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <!-- Project 1 : Airtime -->
                 <div class="project-card group surface-card p-5 flex flex-col justify-between">
                     <div>
-                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-slate-200 dark:border-darkline">
+                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-secondary dark:border-darkline">
                             <img src="src/Airtime.png" alt="Airtime B2B PPOB Transaction Platform" class="w-full h-48 object-cover object-top transition-transform duration-500 group-hover:scale-105">
                         </div>
                         <h3 class="font-display font-bold text-lg text-ink dark:text-white mb-2">Airtime: B2B PPOB Transaction Platform</h3>
@@ -305,11 +373,9 @@
                         <span class="tag-mono">Docker</span>
                     </div>
                 </div>
-
-                <!-- Project 2 : Fantasy Eleven -->
                 <div class="project-card group surface-card p-5 flex flex-col justify-between">
                     <div>
-                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-slate-200 dark:border-darkline">
+                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-secondary dark:border-darkline">
                             <img src="src/Fantasy.png" alt="Fantasy Eleven: Football Strategy Platform" class="w-full h-48 object-cover object-top transition-transform duration-500 group-hover:scale-105">
                         </div>
                         <h3 class="font-display font-bold text-lg text-ink dark:text-white mb-2">Fantasy Eleven: Football Strategy &amp; Fantasy Team Platform</h3>
@@ -322,11 +388,9 @@
                         <span class="tag-mono">REST APIs</span>
                     </div>
                 </div>
-
-                <!-- Project 3 : Airgift -->
                 <div class="project-card group surface-card p-5 flex flex-col justify-between">
                     <div>
-                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-slate-200 dark:border-darkline">
+                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-secondary dark:border-darkline">
                             <img src="src/Airgift.png" alt="Airgift: Transactional Middleware" class="w-full h-48 object-cover object-top transition-transform duration-500 group-hover:scale-105">
                         </div>
                         <h3 class="font-display font-bold text-lg text-ink dark:text-white mb-2">Airgift: Transactional Middleware &amp; Multimerchant API</h3>
@@ -341,11 +405,9 @@
                         <span class="tag-mono">Prometheus</span>
                     </div>
                 </div>
-
-                <!-- Project 4 : Gameshop -->
                 <div class="project-card group surface-card p-5 flex flex-col justify-between">
                     <div>
-                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-slate-200 dark:border-darkline">
+                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-secondary dark:border-darkline">
                             <img src="src/Gameshop.png" alt="Gameshop: Consumer Game Top-Up Portal" class="w-full h-48 object-cover object-top transition-transform duration-500 group-hover:scale-105">
                         </div>
                         <h3 class="font-display font-bold text-lg text-ink dark:text-white mb-2">Gameshop: Consumer Game Top-Up Portal</h3>
@@ -357,11 +419,9 @@
                         <span class="tag-mono">Payment Gateways</span>
                     </div>
                 </div>
-
-                <!-- Project 5 : HRIS -->
                 <div class="project-card group surface-card p-5 flex flex-col justify-between">
                     <div>
-                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-slate-200 dark:border-darkline">
+                        <div class="no-print mb-4 overflow-hidden rounded-lg border border-secondary dark:border-darkline">
                             <img src="src/HRIS.png" alt="Enterprise Human Resource Information System" class="w-full h-48 object-cover object-top transition-transform duration-500 group-hover:scale-105">
                         </div>
                         <h3 class="font-display font-bold text-lg text-ink dark:text-white mb-2">Enterprise Human Resource Information System (HRIS)</h3>
@@ -379,25 +439,21 @@
     <!-- Projects Section End -->
 
     <!-- Education Section Start -->
-    <section id="education" class="py-14 border-t border-slate-200 dark:border-darkline">
+    <section id="education" class="py-14 border-t border-secondary dark:border-darkline">
         <div class="container max-w-5xl mx-auto px-6">
             <h2 class="eyebrow mb-8">Education</h2>
-
             <div class="grid grid-cols-1 md:grid-cols-2 gap-5">
-                <!-- Education 1 -->
                 <div class="education-item surface-card p-5">
                     <div class="flex flex-col gap-1 mb-2">
-                        <span class="font-mono text-[11px] text-primary dark:text-accent">2021 – 2025</span>
+                        <span class="text-[11px] font-medium text-primary dark:text-accent">2021 – 2025</span>
                         <h3 class="font-display font-bold text-lg text-ink dark:text-white">Universitas Indraprasta PGRI (UNINDRA)</h3>
                     </div>
                     <p class="text-sm text-slate-600 dark:text-slate-400">Bachelor of Science in Information Technology — Jakarta, Indonesia</p>
-                    <p class="text-sm text-muted dark:text-slate-500 mt-2"><strong class="text-ink dark:text-white font-semibold">GPA:</strong> 3.61 / 4.00 <span class="text-slate-300 dark:text-darkline">|</span> <strong class="text-ink dark:text-white font-semibold">Focus:</strong> PHP, Web Programming, Software Development, Database Management</p>
+                    <p class="text-sm text-muted dark:text-slate-500 mt-2"><strong class="text-ink dark:text-white font-semibold">GPA:</strong> 3.61 / 4.00 <span class="text-secondary dark:text-darkline">·</span> <strong class="text-ink dark:text-white font-semibold">Focus:</strong> PHP, Web Programming, Software Development, Database Management</p>
                 </div>
-
-                <!-- Education 2 -->
                 <div class="education-item surface-card p-5">
                     <div class="flex flex-col gap-1 mb-2">
-                        <span class="font-mono text-[11px] text-primary dark:text-accent">July 2017 – August 2021</span>
+                        <span class="text-[11px] font-medium text-primary dark:text-accent">July 2017 – August 2021</span>
                         <h3 class="font-display font-bold text-lg text-ink dark:text-white">SMKN 26 Jakarta</h3>
                     </div>
                     <p class="text-sm text-slate-600 dark:text-slate-400">Vocational High School Diploma in Network &amp; System Administration — Jakarta, Indonesia</p>
@@ -409,34 +465,30 @@
     <!-- Education Section End -->
 
     <!-- Contact Section Start -->
-    <section id="contact" class="py-14 border-t border-slate-200 dark:border-darkline no-print">
+    <section id="contact" class="py-14 border-t border-secondary dark:border-darkline no-print">
         <div class="container max-w-5xl mx-auto px-6">
-            <div class="surface-card p-6 md:p-10 hover:border-slate-200 dark:hover:border-darkline hover:shadow-none">
+            <div class="surface-card p-6 md:p-10">
                 <h2 class="eyebrow mb-3">Contact</h2>
                 <p class="font-display font-bold text-2xl md:text-3xl text-ink dark:text-white mb-2 tracking-tight">Let's build something reliable.</p>
                 <p class="text-sm text-muted dark:text-slate-400 mb-8 max-w-md">Drop a message below — I'll get back to you as soon as possible.</p>
-
                 <form name="portfolio-contact-form" class="max-w-xl">
                     <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
                         <div class="flex flex-col">
-                            <label for="name" class="font-mono text-[11px] uppercase tracking-wider text-muted dark:text-slate-400 mb-2">Name</label>
-                            <input type="text" id="name" name="nama" class="w-full rounded-lg bg-lightsurface dark:bg-darkbg border border-slate-200 dark:border-darkline text-ink dark:text-white py-2.5 px-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent/40 focus:outline-none transition-colors" required/>
+                            <label for="name" class="text-[11px] uppercase tracking-wider font-medium text-muted dark:text-slate-400 mb-2">Name</label>
+                            <input type="text" id="name" name="nama" class="w-full rounded-lg bg-lightsurface dark:bg-darkbg border border-secondary dark:border-darkline text-ink dark:text-white py-2.5 px-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary/40 focus:outline-none transition-colors" required/>
                         </div>
                         <div class="flex flex-col">
-                            <label for="email" class="font-mono text-[11px] uppercase tracking-wider text-muted dark:text-slate-400 mb-2">Email</label>
-                            <input type="email" id="email" name="email" class="w-full rounded-lg bg-lightsurface dark:bg-darkbg border border-slate-200 dark:border-darkline text-ink dark:text-white py-2.5 px-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent/40 focus:outline-none transition-colors" required/>
+                            <label for="email" class="text-[11px] uppercase tracking-wider font-medium text-muted dark:text-slate-400 mb-2">Email</label>
+                            <input type="email" id="email" name="email" class="w-full rounded-lg bg-lightsurface dark:bg-darkbg border border-secondary dark:border-darkline text-ink dark:text-white py-2.5 px-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary/40 focus:outline-none transition-colors" required/>
                         </div>
                     </div>
                     <div class="flex flex-col mb-8">
-                        <label for="pesan" class="font-mono text-[11px] uppercase tracking-wider text-muted dark:text-slate-400 mb-2">Message</label>
-                        <textarea id="pesan" name="pesan" rows="4" class="w-full rounded-lg bg-lightsurface dark:bg-darkbg border border-slate-200 dark:border-darkline text-ink dark:text-white py-2.5 px-3 text-sm focus:border-accent focus:ring-1 focus:ring-accent/40 focus:outline-none transition-colors resize-none" required></textarea>
+                        <label for="pesan" class="text-[11px] uppercase tracking-wider font-medium text-muted dark:text-slate-400 mb-2">Message</label>
+                        <textarea id="pesan" name="pesan" rows="4" class="w-full rounded-lg bg-lightsurface dark:bg-darkbg border border-secondary dark:border-darkline text-ink dark:text-white py-2.5 px-3 text-sm focus:border-primary focus:ring-1 focus:ring-primary/40 focus:outline-none transition-colors resize-none" required></textarea>
                     </div>
-
                     <div class="flex items-center gap-4">
-                        <button type="submit" id="btn-kirim" class="px-6 py-2.5 rounded-lg bg-teal-blue text-white font-semibold text-sm hover:opacity-90 shadow-glow transition-opacity">Send Message</button>
-                        <button type="button" id="btn-loading" class="px-6 py-2.5 rounded-lg bg-slate-300 dark:bg-darkline text-white font-semibold text-sm cursor-not-allowed hidden animate-pulse" disabled>Sending...</button>
-
-                        <!-- Inline feedback containers -->
+                        <button type="submit" id="btn-kirim" class="px-6 py-2.5 rounded-lg bg-primary text-white font-semibold text-sm hover:bg-primary/90 transition-colors">Send Message</button>
+                        <button type="button" id="btn-loading" class="px-6 py-2.5 rounded-lg bg-secondary dark:bg-darkline text-white font-semibold text-sm cursor-not-allowed hidden" disabled>Sending...</button>
                         <span id="form-success" class="hidden text-sm font-semibold text-primary dark:text-accent">✓ Message sent successfully!</span>
                         <span id="form-error" class="hidden text-sm font-semibold text-red-500">✗ Failed to send message. Please try again.</span>
                     </div>
@@ -447,9 +499,9 @@
     <!-- Contact Section End -->
 
     <!-- Footer Start -->
-    <footer class="py-10 border-t border-slate-200 dark:border-darkline no-print">
+    <footer class="py-10 border-t border-secondary dark:border-darkline no-print">
         <div class="container max-w-5xl mx-auto px-6 flex flex-col md:flex-row items-center justify-between gap-4 text-xs text-muted dark:text-slate-500">
-            <p class="font-mono">© 2026 Farhan Arfianto</p>
+            <p>© 2026 Farhan Arfianto</p>
             <div class="flex gap-4">
                 <a href="https://linkedin.com/in/farhanarfianto" target="_blank" rel="noopener noreferrer" class="hover:text-primary dark:hover:text-accent transition-colors">LinkedIn</a>
                 <a href="https://github.com/farhanskuyyyy" target="_blank" rel="noopener noreferrer" class="hover:text-primary dark:hover:text-accent transition-colors">GitHub</a>
@@ -460,7 +512,7 @@
     <!-- Footer End -->
 
     <!-- Scroll to Top Button Start -->
-    <a href="#home" id="toTop" class="fixed bottom-6 right-6 p-3 z-50 rounded-xl bg-teal-blue text-white shadow-glow transition-all duration-300 hidden hover:scale-105 no-print" aria-label="Scroll to top">
+    <a href="#home" id="toTop" class="fixed bottom-6 right-6 p-3 z-50 rounded-xl bg-primary text-white transition-all duration-300 hidden hover:bg-primary/90 no-print" aria-label="Scroll to top">
         <svg class="w-5 h-5" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 10l7-7m0 0l7 7m-7-7v18"/></svg>
     </a>
     <!-- Scroll to Top Button End -->
@@ -522,18 +574,13 @@
 
         categoryButtons.forEach(btn => {
             btn.addEventListener('click', () => {
-                // Reset button states
                 categoryButtons.forEach(b => {
                     b.classList.remove('bg-primary', 'text-white', 'border-primary');
-                    b.classList.add('text-muted', 'dark:text-slate-400', 'border-slate-200', 'dark:border-darkline');
+                    b.classList.add('text-muted', 'dark:text-slate-400', 'border-secondary', 'dark:border-darkline');
                 });
-
-                // Set active button state
                 btn.classList.add('bg-primary', 'text-white', 'border-primary');
-                btn.classList.remove('text-muted', 'dark:text-slate-400', 'border-slate-200', 'dark:border-darkline');
-
+                btn.classList.remove('text-muted', 'dark:text-slate-400', 'border-secondary', 'dark:border-darkline');
                 const targetCat = btn.getAttribute('data-category');
-
                 skillCards.forEach(card => {
                     if (targetCat === 'all' || card.getAttribute('data-group') === targetCat) {
                         card.classList.remove('opacity-25');
@@ -554,12 +601,10 @@
 
         form.addEventListener("submit", (e) => {
             e.preventDefault();
-
             btnLoading.classList.remove("hidden");
             btnKirim.classList.add("hidden");
             successAlert.classList.add("hidden");
             errorAlert.classList.add("hidden");
-
             fetch(scriptURL, { method: "POST", body: new FormData(form) })
             .then((response) => {
                 btnLoading.classList.add("hidden");
